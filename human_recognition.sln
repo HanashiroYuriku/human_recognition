@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC63B8A9-1259-409F-8B69-7705083879D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_recognition.Domain", "src\human_recognition.Domain\human_recognition.Domain.csproj", "{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_recognition.Application", "src\human_recognition.Application\human_recognition.Application.csproj", "{056E2919-0B78-4B55-A1CD-38A10862B570}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_recognition.Infrastructure", "src\human_recognition.Infrastructure\human_recognition.Infrastructure.csproj", "{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_recognition.API", "src\human_recognition.API\human_recognition.API.csproj", "{E6480CAF-2012-461F-A7FC-713F727DEC8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5801B0D4-5F1F-4346-938E-C520576CDC07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_recognition.Tests", "tests\human_recognition.Tests\human_recognition.Tests.csproj", "{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{056E2919-0B78-4B55-A1CD-38A10862B570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{056E2919-0B78-4B55-A1CD-38A10862B570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{056E2919-0B78-4B55-A1CD-38A10862B570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{056E2919-0B78-4B55-A1CD-38A10862B570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6480CAF-2012-461F-A7FC-713F727DEC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6480CAF-2012-461F-A7FC-713F727DEC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6480CAF-2012-461F-A7FC-713F727DEC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6480CAF-2012-461F-A7FC-713F727DEC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99D8B1BA-A83A-4DF4-B2D0-D7C644087D44} = {BC63B8A9-1259-409F-8B69-7705083879D6}
+		{056E2919-0B78-4B55-A1CD-38A10862B570} = {BC63B8A9-1259-409F-8B69-7705083879D6}
+		{1DEAEEB5-38CF-4026-9F75-A29F91BB62EA} = {BC63B8A9-1259-409F-8B69-7705083879D6}
+		{E6480CAF-2012-461F-A7FC-713F727DEC8A} = {BC63B8A9-1259-409F-8B69-7705083879D6}
+		{70FD93D1-FBF9-4889-9E3A-8DC2E9A83EE0} = {5801B0D4-5F1F-4346-938E-C520576CDC07}
+	EndGlobalSection
+EndGlobal
