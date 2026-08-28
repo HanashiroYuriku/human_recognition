@@ -11,15 +11,15 @@ public class YoloxDetector : IPersonDetector, IDisposable
 {
     // ONNX inference session used to execute the model
     private readonly InferenceSession _session;
-    
+
     // Standard input width and height expected by the YOLO model
-    private readonly int _inputWidth = 640;  
-    private readonly int _inputHeight = 640; 
+    private readonly int _inputWidth = 640;
+    private readonly int _inputHeight = 640;
 
     public YoloxDetector(string modelPath)
     {
         var options = new SessionOptions();
-        
+
         // Configure the session to use the CPU execution provider
         options.AppendExecutionProvider_CPU();
         _session = new InferenceSession(modelPath, options);
@@ -46,7 +46,7 @@ public class YoloxDetector : IPersonDetector, IDisposable
 
         // Create a padded image canvas with a neutral gray background (114, 114, 114)
         using var padded = new Mat(_inputHeight, _inputWidth, MatType.CV_8UC3, new Scalar(114, 114, 114));
-        
+
         // Calculate the top and left offsets to center the resized image on the padded canvas
         int top = (_inputHeight - newHeight) / 2;
         int left = (_inputWidth - newWidth) / 2;
@@ -62,7 +62,7 @@ public class YoloxDetector : IPersonDetector, IDisposable
 
         // Execute the ONNX model with the prepared input tensor
         using var results = _session.Run(inputs);
-        
+
         // Retrieve the output tensor containing bounding boxes, scores, and class predictions
         var output = results.First().AsTensor<float>();
 
@@ -74,9 +74,9 @@ public class YoloxDetector : IPersonDetector, IDisposable
 
         var boxes = new List<Rect>();
         var scores = new List<float>();
-        
+
         // Minimum confidence score required to consider a detection valid
-        const float confidenceThreshold = 0.25f; 
+        const float confidenceThreshold = 0.25f;
 
         // Iterate through all predicted bounding boxes from the model output
         for (int i = 0; i < numBoxes; i++)
@@ -164,7 +164,7 @@ public class YoloxDetector : IPersonDetector, IDisposable
                 tensor[0, 2, y, x] = vec3b.Item2; // Red channel
             }
         }
-        
+
         return tensor;
     }
 
