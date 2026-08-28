@@ -28,6 +28,11 @@ A modular backend template utilizing Clean Architecture, Vertical Slicing, and C
 ```text
 human_recognition/
     ├── human_recognition.sln
+    ├── image/
+    │   ├── Human Detected/ 
+    │   ├── Human Not Detected/ 
+    ├── image_source/
+    ├── models/
     ├── src/
     │   │
     │   ├── human_recognition.Domain/                        # [Domain Layer]
@@ -120,15 +125,6 @@ graph TD
     
     # 2. Change directory to root project.
     cd human_recognition
-
-    # 3. Run the following command to installthe template on your local machine.
-    dotnet new install .
-
-    # 4. Create a new project from the template (replace `Your-Project-Name`).
-    dotnet new human_recognition -n `Your-Project-Name`
-
-    # 5. Move to your newly created project directory.
-    cd Your-Project-Name
 ```
 
 ### 1. Database Setup
@@ -169,9 +165,6 @@ dotnet ef migrations add InitialCreate --project src/human_recognition.Infrastru
 
 # 2. Execute table creation to MySQL
 dotnet ef database update --project src/human_recognition.Infrastructure --startup-project src/human_recognition.API
-
-# 3. How to update the template after pull or local changes:
-dotnet new install . --force
 ```
 
 ## Prepush Checklist
