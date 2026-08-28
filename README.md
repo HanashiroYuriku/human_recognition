@@ -145,6 +145,11 @@ Use the following command to start the server. Makesure you are on `human_recogn
 dotnet run
 # Your server will run on port: 5098 (or as configured in launchSettings.json)
 ```
+
+Or use the following command if you are on the root directory
+```bash
+dotnet run --project src/human_recognition.API
+```
 ### 5. Healty Check 
 You can check your *server* and *database* health by accessing:
 ```
