@@ -57,48 +57,39 @@ public class YoloxDetector : IPersonDetector, IDisposable
         bool personFound = false;
         float highestScore = 0f;
 
-        int numBoxes = output.Dimensions[2];
+        int numBoxes = output.Dimensions[1];
 
-var boxes = new List<Rect>();
-var scores = new List<float>();
+        var boxes = new List<Rect>();
+        var scores = new List<float>();
+        const float confidenceThreshold = 0.20f; // Naikkan sedikit ke 0.25 untuk YOLOX
 
-const float confidenceThreshold = 0.20f;
+        for (int i = 0; i < numBoxes; i++)
+        {
+            // Indeks dibalik: [batch, anchor_index, atribut]
+            float cx = output[0, i, 0];
+            float cy = output[0, i, 1];
+            float w = output[0, i, 2];
+            float h = output[0, i, 3];
 
-for (int i = 0; i < numBoxes; i++)
-{
-    float cx = output[0, 0, i];
-    float cy = output[0, 1, i];
-    float w  = output[0, 2, i];
-    float h  = output[0, 3, i];
+            // YOLOX memisahkan skor objek dan skor kelas
+            float objScore = output[0, i, 4];
+            float clsScore = output[0, i, 5];
+            float personScore = objScore * clsScore;
 
-    // YOLO11 COCO:
-    // class 0 = person
-    float personScore = output[0, 4, i];
+            if (personScore < confidenceThreshold)
+                continue;
 
-    if (personScore < confidenceThreshold)
-        continue;
+            float originalCx = (cx - left) / ratio;
+            float originalCy = (cy - top) / ratio;
+            float originalW = w / ratio;
+            float originalH = h / ratio;
 
-    float originalCx = (cx - left) / ratio;
-    float originalCy = (cy - top) / ratio;
-    float originalW  = w / ratio;
-    float originalH  = h / ratio;
+            int x = (int)(originalCx - originalW / 2);
+            int y = (int)(originalCy - originalH / 2);
 
-    int x = (int)(originalCx - originalW / 2);
-    int y = (int)(originalCy - originalH / 2);
-
-    int width  = (int)originalW;
-    int height = (int)originalH;
-
-    var box = new Rect(
-        x,
-        y,
-        width,
-        height
-    );
-
-    boxes.Add(box);
-    scores.Add(personScore);
-}
+            boxes.Add(new Rect(x, y, (int)originalW, (int)originalH));
+            scores.Add(personScore);
+        }
 
         // --- NMS & PENGGAMBARAN KOTAK ---
         if (boxes.Count > 0)
@@ -140,12 +131,10 @@ for (int i = 0; i < numBoxes; i++)
             {
                 var vec3b = image.At<Vec3b>(y, x);
 
-                // --- PERUBAHAN FATAL UNTUK YOLO11 ---
-                // 1. Format harus RGB (bukan BGR seperti YOLOX)
-                // 2. Nilai WAJIB dinormalisasi (dibagi 255.0f)
-                tensor[0, 0, y, x] = vec3b.Item2 / 255.0f; // R
-                tensor[0, 1, y, x] = vec3b.Item1 / 255.0f; // G
-                tensor[0, 2, y, x] = vec3b.Item0 / 255.0f; // B
+                // KEMBALI KE FORMAT YOLOX: BGR dan tanpa normalisasi / 255.0f
+                tensor[0, 0, y, x] = vec3b.Item0; // B
+                tensor[0, 1, y, x] = vec3b.Item1; // G
+                tensor[0, 2, y, x] = vec3b.Item2; // R
             }
         }
         return tensor;

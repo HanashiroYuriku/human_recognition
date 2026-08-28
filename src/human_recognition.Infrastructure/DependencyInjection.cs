@@ -38,7 +38,7 @@ public static class DependencyInjection
         services.AddScoped<IDbTransactionManager, DbTransactionManager>();
 
         string modelPath = configuration.GetValue<string>("AI:YoloxModelPath")
-            ?? "D:\\Kantor\\Project\\Temp\\human_recognition\\models\\yolo11m.onnx";
+            ?? "D:\\Kantor\\Project\\Temp\\human_recognition\\models\\yolox_cctv.onnx";
 
         services.AddSingleton<IPersonDetector>(provider => new YoloxDetector(modelPath));
 
